@@ -4,6 +4,9 @@
         "scrollbar.shadow": "#00000000"
     },
     "files.associations": {
-        "debug.h": "c"
+        "debug.h": "c",
+        "type_traits": "c",
+        "xtr1common": "c",
+        "xutility": "c"
     }
 }
