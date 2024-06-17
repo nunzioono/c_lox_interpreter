@@ -49,4 +49,7 @@ clean:
 
 # Run the executable
 run:
-	$(RUN)
+	$(RUN) $(filter-out $@,$(MAKECMDGOALS))
+
+%:
+	@:
