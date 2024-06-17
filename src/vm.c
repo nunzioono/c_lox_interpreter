@@ -33,9 +33,44 @@ void initVM() {
     vm.objects = NULL;
 }
 
+
+static void concatenate() {
+  ObjString* b = AS_STRING(pop());
+  ObjString* a = AS_STRING(pop());
+
+  int length = a->length + b->length;
+  char* chars = ALLOCATE(char, length + 1);
+  memcpy(chars, a->chars, a->length);
+  memcpy(chars + a->length, b->chars, b->length);
+  chars[length] = '\0';
+
+  ObjString* result = takeString(chars, length);
+  push(OBJ_VAL(result));
+}
+
 void freeVM() {
     freeObjects();
 }
+
+
+static bool isFalsey(Value value) {
+  return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
+}
+
+void push(Value value) {
+  *vm.stackTop = value;
+  vm.stackTop++;
+}
+
+Value pop() {
+  vm.stackTop--;
+  return *vm.stackTop;
+}
+
+static Value peek(int distance) {
+  return vm.stackTop[-1 - distance];
+}
+
 
 static InterpretResult run() {
 #define READ_BYTE() (*vm.ip++)
@@ -138,36 +173,4 @@ Chunk chunk;
 
   freeChunk(&chunk);
   return result;
-}
-
-void push(Value value) {
-  *vm.stackTop = value;
-  vm.stackTop++;
-}
-
-Value pop() {
-  vm.stackTop--;
-  return *vm.stackTop;
-}
-
-static Value peek(int distance) {
-  return vm.stackTop[-1 - distance];
-}
-
-static bool isFalsey(Value value) {
-  return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
-}
-
-static void concatenate() {
-  ObjString* b = AS_STRING(pop());
-  ObjString* a = AS_STRING(pop());
-
-  int length = a->length + b->length;
-  char* chars = ALLOCATE(char, length + 1);
-  memcpy(chars, a->chars, a->length);
-  memcpy(chars + a->length, b->chars, b->length);
-  chars[length] = '\0';
-
-  ObjString* result = takeString(chars, length);
-  push(OBJ_VAL(result));
 }
