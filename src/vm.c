@@ -29,8 +29,9 @@ static void runtimeError(const char* format, ...) {
 }
 
 void initVM() {
-    resetStack();
-    vm.objects = NULL;
+  resetStack();
+  vm.objects = NULL;
+  initTable(&vm.strings);
 }
 
 
@@ -49,7 +50,8 @@ static void concatenate() {
 }
 
 void freeVM() {
-    freeObjects();
+  freeTable(&vm.strings);
+  freeObjects();
 }
 
 
