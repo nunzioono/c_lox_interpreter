@@ -1,7 +1,7 @@
 # c_lox_interpreter
 
 Lox is a scripting language written for learning purposes, this version of the interpreter is written in c and so can be compiled for any machine that has installed a c compiler.
-Amenities are provided using cmake so it's good to have installed make too.
+Amenities are provided using make so it's good to have installed make too.
 
 ## Installation
 
