@@ -11,7 +11,7 @@ SRC = $(wildcard $(SRC_DIR)/*.c)
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(SRC_DIR)/%.o)
 
 # Define the executable name
-EXEC = main.exe
+EXEC = lox.exe
 
 # Detect the operating system
 ifeq ($(OS),Windows_NT)
