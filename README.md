@@ -34,3 +34,7 @@ To toggle logging from the interpreter you just need to comment out in common.h 
 #endif`
 
 Then recompile the program with make or using the base gcc compiler and enjoy!
+
+## Syntax rules
+
+To write programs in Lox you should follow the rules stated by the creator at this ![link](https://www.craftinginterpreters.com/appendix-i.html)
