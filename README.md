@@ -31,7 +31,8 @@ To toggle logging from the interpreter you just need to comment out in common.h 
 
 #define UINT8_COUNT (UINT8_MAX + 1)
 
-#endif```
+#endif
+```
 
 Then recompile the program with make or using the base gcc compiler and enjoy!
 
